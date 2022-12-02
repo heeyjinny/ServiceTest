@@ -170,4 +170,4 @@ class MainActivity : AppCompatActivity() {
     //서비스함수 callServiceFunction 호출 버튼 추가
     //activity_main.xml
 
-}//MainActivity달
+}//MainActivity
