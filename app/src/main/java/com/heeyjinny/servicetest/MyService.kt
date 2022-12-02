@@ -2,6 +2,7 @@ package com.heeyjinny.servicetest
 
 import android.app.Service
 import android.content.Intent
+import android.os.Binder
 import android.os.IBinder
 import android.util.Log
 
@@ -12,12 +13,18 @@ import android.util.Log
 class MyService : Service() {
 
     //스타티드 서비스에서 사용하지 않는 메서드
+    //8
+    //바운드서비스 사용 시 binder변수를 반환하도록 설정
     override fun onBind(intent: Intent): IBinder {
-        TODO("Return the communication channel to the service.")
+        return binder
     }
 
+    //9
+    //MainActivity.kt에서 바운드서비스와 연결할 수 있는
+    //서비스 커넥션 생성
+
     //2
-    //스타티드 서비스 사용을 위해
+    //서비스 사용을 위해
     //onStartCommand() 메서드 오버라이드
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
@@ -58,5 +65,32 @@ class MyService : Service() {
     //6
     //버튼을 누르면 로그캣 창에 원하는 로그가 뜨도록
     //activity_main.xml에 버튼 추가
+
+    //7
+    //바운드 서비스 만들기
+    //이너클래스로 바인더 클래스 생성
+    inner class MyBinder: Binder(){
+        //7-1
+        //getService()메서드 생성
+        //액티비티와 서비스가 연결되면
+        //바인더의 getService()메서드를 통해 서비스 접근 가능함
+        fun getService(): MyService{
+            return this@MyService
+        }
+    }
+
+    //7-2
+    //변수를 만들어 바인더 이너클래스 생성
+    val binder = MyBinder()
+
+    //8
+    //바운드 서비스는 액티비티에서 서비스의 메서드를 직접 호출 가능
+    //문자열 하나를 반환하는 메서드 추가
+    fun serviceMessage(): String{
+        return "Hello Activity, I am BoundService!"
+    }
+
+    //8-1
+    //MainActivity.kt에서 문자열반환 메서드 호출
 
 }//Myservice

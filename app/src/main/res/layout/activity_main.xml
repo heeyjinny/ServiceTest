@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+<!--  스타티드 서비스 실행버튼 추가  -->
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -27,5 +28,47 @@
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent"
         android:onClick="serviceStop"/>
+
+<!--  버튼 생성 후 로그캣 스타티드 서비스 적용 확인  -->
+<!--  또 다른 서비스 실행방법인 바운드 서비스 만들기위해  -->
+<!--  MyService.kt 코드 작성  -->
+
+<!--  바운드서비스 실행 버튼 추가  -->
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="서비스 bind"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        android:onClick="serviceBind"/>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="서비스 unbind"
+        android:layout_marginTop="50dp"
+        android:onClick="serviceUnbind"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+<!--  바운드 서비스 메서드 직접 호출을 위해 MyService.kt 작성  -->
+
+<!--  서비스 함수 호출버튼 추가  -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="서비스 함수 호출"
+        android:layout_marginTop="50dp"
+        android:onClick="callServiceFunction"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+<!--  실행 후 작동 확인...  -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
